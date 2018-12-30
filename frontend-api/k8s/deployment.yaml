@@ -1,0 +1,26 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: frontend-api
+spec:
+  replicas: 2
+  minReadySeconds: 15
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
+  template:
+    metadata:
+      labels:
+        app: frontend-api
+    spec:
+      containers:
+      - image: santagar/kubernetes-solution-frontend-api
+        imagePullPolicy: Always
+        name: frontend-api
+        env:
+          - name: MICROSERVICE_URL
+            value: "http://microservice"                    # Kube-DNS for microservice
+        ports:
+          - containerPort: 8080

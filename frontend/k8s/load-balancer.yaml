@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend-lb
+spec:
+  type: LoadBalancer       # Specification type, we choose LoadBalancer because we want to balance the load between the pods.
+  ports:
+  - port: 80               # Specifies the port in which the service gets requests.
+    protocol: TCP          # Defines the communication.
+    targetPort: 80         # The port at which incomming requests are forwarded.
+  selector:
+    app: frontend          # Defines which pods to target, only pods that are labeled with the value
