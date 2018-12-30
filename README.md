@@ -5,6 +5,8 @@ This project creates a demo polyglot system in Docker containers, the applicatio
 - `Frontend-api` a Java Web Application that handles requests from the frontend.
 - `Microservice` a Python application that performs Sentiment Analysis.
 
+![](static/diagram.png?raw=true)
+
 In this demo, the application is not too important because the real motivation will be expose how to run any microservice architecture solution with [Kubernetes](https://kubernetes.io/).
 
 Therefore, let's start:
