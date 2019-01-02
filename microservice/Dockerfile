@@ -1,8 +1,11 @@
-FROM python:3.6.6-alpine
+FROM python:3.6.6-alpine as base
+FROM base as builder
+RUN mkdir /install
+WORKDIR /install
+COPY src/requirements.txt /requirements.txt
+RUN pip install --install-option="--prefix=/install" -r /requirements.txt
+FROM base
+COPY --from=builder /install /usr/local
 COPY src /app
 WORKDIR /app
-RUN pip3 install -r requirements.txt && \
-    python3 -m textblob.download_corpora
-EXPOSE 5000
-ENTRYPOINT ["python3"]
-CMD ["sentiment_analysis.py"]
+CMD ["python3", "sentiment_analysis.py"]
