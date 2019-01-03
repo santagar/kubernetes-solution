@@ -11,4 +11,4 @@ fi;
 SERVICE=$SOLUTION-frontend-api;
 
 docker pull $DOCKER_ID/$SERVICE:$TAGNAME
-docker run -d -p 8080:8080 -e SERVICE_URL='http://localhost:5000' $DOCKER_ID/$SERVICE:$TAGNAME
+docker run -d -p 8080:8080 -e MICROSERVICE_URL='http://localhost:5000' $DOCKER_ID/$SERVICE:$TAGNAME
